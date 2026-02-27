@@ -1,0 +1,118 @@
+# Spec-Kit Configuration
+
+name: hackathon-todo-phase2
+version: "2.0.0"
+description: "Phase II: Full-Stack Web Application - Todo WebApp"
+
+# Directory Structure
+structure:
+  specs_dir: specs
+  features_dir: specs/features
+  api_dir: specs/api
+  database_dir: specs/database
+  ui_dir: specs/ui
+  frontend_dir: frontend
+  backend_dir: backend
+
+# Project Phases
+phases:
+  - name: phase1-console
+    status: completed
+    features:
+      - task-crud-basic
+    tech_stack:
+      - Python
+      - In-memory storage
+
+  - name: phase2-web
+    status: in_progress
+    features:
+      - task-crud
+      - authentication
+    tech_stack:
+      - Next.js 16+
+      - FastAPI
+      - SQLModel
+      - Neon PostgreSQL
+      - Better Auth
+
+  - name: phase3-chatbot
+    status: pending
+    features:
+      - task-crud
+      - authentication
+      - ai-chatbot
+      - mcp-tools
+    tech_stack:
+      - OpenAI ChatKit
+      - OpenAI Agents SDK
+      - MCP SDK
+
+  - name: phase4-kubernetes
+    status: pending
+    deployment:
+      - Minikube
+      - Docker
+      - Helm Charts
+
+  - name: phase5-cloud
+    status: pending
+    deployment:
+      - DigitalOcean Kubernetes (DOKS)
+      - Kafka/Redpanda
+      - Dapr
+
+# Current Phase Configuration
+current_phase: phase2-web
+
+# Feature Flags
+features:
+  task_crud: true
+  authentication: true
+  ai_chatbot: false
+  kubernetes_deployment: false
+  advanced_features: false
+
+# Development Workflow
+workflow:
+  spec_first: true
+  qwen_code_enabled: true
+  mcp_server: true
+
+# Commands (for MCP Server)
+commands:
+  specify:
+    description: "Capture requirements and update speckit.specify"
+    path: .qwen/commands/specify.md
+    
+  plan:
+    description: "Generate technical plan and update speckit.plan"
+    path: .qwen/commands/plan.md
+    
+  tasks:
+    description: "Break down plan into tasks and update speckit.tasks"
+    path: .qwen/commands/tasks.md
+    
+  implement:
+    description: "Execute implementation based on tasks"
+    path: .qwen/commands/implement.md
+
+# Quality Gates
+quality:
+  min_test_coverage: 80
+  require_spec_for_code: true
+  require_task_reference: true
+  lint_on_commit: true
+
+# Environment
+environment:
+  frontend_port: 3000
+  backend_port: 8000
+  database_ssl: true
+  
+# Documentation
+documentation:
+  readme: README.md
+  constitution: speckit.constitution
+  agents: AGENTS.md
+  claude_bridge: CLAUDE.md

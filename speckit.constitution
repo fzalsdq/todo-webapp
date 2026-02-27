@@ -1,0 +1,161 @@
+# Todo WebApp - Constitution
+
+## **Project Vision**
+
+Build a production-ready, full-stack Todo web application using spec-driven development with Qwen Code and Spec-Kit Plus.
+
+---
+
+## **Phase II: Full-Stack Web Application**
+
+### **Core Principles**
+
+1. **Spec-First Development**: No code without a specification. Every feature must be documented in `/specs` before implementation.
+2. **Clean Architecture**: Clear separation between frontend (Next.js), backend (FastAPI), and database (Neon PostgreSQL).
+3. **Security First**: JWT-based authentication, user isolation, secure credential management.
+4. **Type Safety**: TypeScript on frontend, Python type hints on backend.
+5. **Responsive Design**: Mobile-first UI that works on all devices.
+
+---
+
+## **Technology Stack**
+
+| Layer | Technology | Version |
+| :---- | :---- | :---- |
+| Frontend | Next.js (App Router) | 16+ |
+| Frontend Language | TypeScript | Latest |
+| Styling | Tailwind CSS | Latest |
+| Backend | FastAPI | Latest |
+| ORM | SQLModel | Latest |
+| Database | Neon Serverless PostgreSQL | Latest |
+| Authentication | Better Auth | Latest |
+| Package Manager (Frontend) | npm/pnpm | Latest |
+| Package Manager (Backend) | UV | Latest |
+| Python Version | Python | 3.13+ |
+
+---
+
+## **Architecture Standards**
+
+### **Monorepo Structure**
+
+```
+todo-webapp/
+├── .spec-kit/              # Spec-Kit configuration
+├── specs/                  # Specification files
+│   ├── overview.md
+│   ├── architecture.md
+│   ├── features/
+│   ├── api/
+│   ├── database/
+│   └── ui/
+├── frontend/               # Next.js application
+├── backend/                # FastAPI application
+├── docker-compose.yml      # Local development
+├── AGENTS.md               # Agent instructions
+├── CLAUDE.md               # Qwen Code bridge
+└── README.md
+```
+
+### **Backend Standards**
+
+- All routes under `/api` prefix
+- Use dependency injection for database sessions
+- Return consistent JSON responses
+- Handle errors with HTTPException
+- Use Pydantic models for request/response validation
+- Environment variables for configuration
+
+### **Frontend Standards**
+
+- Server Components by default
+- Client Components only for interactivity
+- API calls through centralized client (`/lib/api.ts`)
+- Tailwind CSS for styling (no inline styles)
+- TypeScript strict mode enabled
+
+### **Database Standards**
+
+- All tables have `id`, `created_at`, `updated_at` fields
+- Use foreign keys with cascading deletes
+- Index frequently queried columns
+- Migrations managed via SQLModel/Alembic
+
+---
+
+## **Security Requirements**
+
+1. **JWT Authentication**: All API endpoints require valid JWT token
+2. **User Isolation**: Users can only access their own tasks
+3. **Environment Variables**: Never commit secrets to version control
+4. **CORS**: Restrict cross-origin requests to trusted domains
+5. **Input Validation**: Validate all user inputs on both frontend and backend
+
+---
+
+## **Code Quality Standards**
+
+1. **DRY**: Don't Repeat Yourself - extract common logic
+2. **Single Responsibility**: Each function/class does one thing well
+3. **Descriptive Names**: Variables, functions, and files should be self-documenting
+4. **Comments**: Add comments for *why*, not *what*
+5. **Error Handling**: Graceful error handling with user-friendly messages
+
+---
+
+## **Testing Standards**
+
+- Backend: Pytest for API and unit tests
+- Frontend: React Testing Library for component tests
+- Minimum 80% code coverage for critical paths
+
+---
+
+## **Documentation Standards**
+
+- README.md with setup instructions
+- API documentation via FastAPI OpenAPI/Swagger
+- Component documentation in code comments
+- Spec files as single source of truth
+
+---
+
+## **Workflow Rules**
+
+1. Read relevant spec before implementing: `@specs/features/[feature].md`
+2. Implement backend: Reference `@backend/` files
+3. Implement frontend: Reference `@frontend/` files
+4. Test and iterate
+5. Update specs if requirements change
+
+---
+
+## **Phase II Features (Basic Level)**
+
+- [ ] User signup/signin with Better Auth
+- [ ] Add Task - Create new todo items
+- [ ] Delete Task - Remove tasks from the list
+- [ ] Update Task - Modify existing task details
+- [ ] View Task List - Display all tasks
+- [ ] Mark as Complete - Toggle task completion status
+
+---
+
+## **Qwen Code Integration**
+
+This project uses **Qwen Code** as the AI coding assistant. All references to "Claude Code" in documentation should be interpreted as "Qwen Code".
+
+### **Qwen Code Workflow**
+
+1. **Specify**: Define requirements in `speckit.specify`
+2. **Plan**: Generate technical approach in `speckit.plan`
+3. **Tasks**: Break down into atomic tasks in `speckit.tasks`
+4. **Implement**: Qwen Code executes code changes
+
+### **MCP Server Setup**
+
+Qwen Code interacts with Spec-Kit Plus via MCP server with prompts in `.qwen/commands/`:
+- `/specify` - Capture requirements
+- `/plan` - Generate technical plan
+- `/tasks` - Create task breakdown
+- `/implement` - Execute implementation
